@@ -1,74 +1,98 @@
-# Canary
+# Odin — Hakai Engine Server
 
-[![Discord](https://img.shields.io/discord/528117503952551936.svg?style=flat-square&logo=discord)](https://discord.gg/gvTj5sh9Mp)
-[![CI](https://github.com/opentibiabr/canary/actions/workflows/ci.yml/badge.svg)](https://github.com/opentibiabr/canary/actions/workflows/ci.yml)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=opentibiabr_canary&metric=alert_status)](https://sonarcloud.io/dashboard?id=opentibiabr_canary)
-![Repository size](https://img.shields.io/github/repo-size/opentibiabr/canary)
-[![License](https://img.shields.io/github/license/opentibiabr/canary.svg)](https://github.com/opentibiabr/canary/blob/main/LICENSE)
+Odin é o servidor autoritativo do Hakai Engine. Ele combina o núcleo C++20 e
+Lua do [OpenTibiaBR Canary](https://github.com/opentibiabr/canary) com os
+sistemas Pokémon desenvolvidos para o Loki.
 
-Canary is a free and open-source MMORPG server emulator for the OpenTibia community, written in C++20 and Lua. It is a fork of the [OTServBR-Global](https://github.com/opentibiabr/otservbr-global) project. The repository includes the server core, datapacks, Lua scripts, database schema, build presets, automated tests and development tooling used by the project.
+> Este componente pertence ao monorepo
+> [`hakai-loki-alpha`](https://github.com/hakai-engine/hakai-loki-alpha).
+> O cliente correspondente é o [Thor](../client/README.md).
 
----
+## Responsabilidades
 
-## Getting Started
+O Odin controla:
 
-- [Wiki](https://github.com/opentibiabr/canary/wiki).
+- contas, sessões, personagens e persistência;
+- mapa, criaturas, NPCs e eventos;
+- espécies, instâncias capturadas, nature, gênero e IVs;
+- atributos, progressão, evolução e equipamentos;
+- golpes, tipos, dano e políticas de combate;
+- Team, summon, recall, faint e battle lock;
+- corpse, captura, Capture Bag e Poké Balls;
+- cura, Nurse Joy, viagem, surf e fly;
+- roster sincronizado com o Thor.
 
----
+O catálogo atual contém definições das 151 espécies de Kanto em
+`data-canary/lib/pokemon/species/` e os MonsterTypes correspondentes em
+`data-canary/monster/pokemon/`.
 
-## Docker Quickstart
+## Contrato de rede local
 
-Canary includes a lightweight Docker quickstart for running a local test server
-without compiling Canary locally. The stack starts MariaDB, the published Canary
-runtime image, MyAAC as the website/admin AAC, and `opentibiabr/login-server` as
-the client login webservice.
+| Serviço | Endereço padrão | Uso |
+|---|---|---|
+| Login HTTP | `http://127.0.0.1:8088/login` | autenticação e lista de personagens |
+| Game protocol | `127.0.0.1:7172` | conexão do Thor ao mundo |
+| Login legado | `127.0.0.1:7171` | infraestrutura Canary, não é a entrada do perfil Hakai |
 
-This quickstart is for local development, testing, and LAN demos. Do not expose
-it directly to the public Internet with the default test accounts and passwords.
+O perfil Hakai usa protocolo `15.25` e `authType = "session"`. O login-server
+entrega ao Thor um token de sessão opaco e o endereço do mundo.
 
-Run from the `docker` directory:
+## Pré-requisitos
 
-```bash
-cp .env.dist .env
-docker compose up -d --build
-```
+- compilador com suporte a C++20;
+- CMake e Ninja;
+- dependências descritas em `vcpkg.json`;
+- MariaDB compatível com `schema.sql`;
+- PowerShell para os utilitários locais do Hakai.
 
-The `docker` directory also provides guarded start scripts that start the stack
-and clean safe Docker leftovers without removing database volumes:
+No Windows, prefira Developer PowerShell ou Developer Command Prompt do Visual
+Studio, com MSVC e Ninja disponíveis no `PATH`.
+
+## Configuração
+
+Crie a configuração local, que é ignorada pelo Git:
 
 ```powershell
-.\up.ps1
+Copy-Item config.lua.dist config.lua
 ```
+
+Revise pelo menos:
+
+- conexão do banco de dados;
+- `ip`;
+- `gameProtocolPort`;
+- `serverName`;
+- `authType = "session"`;
+- datapack e mapa usados pelo ambiente.
+
+Nunca versione `config.lua`, `.env`, bancos, logs ou chaves privadas.
+
+## Build
+
+Windows Release:
+
+```powershell
+cmake --preset windows-release
+cmake --build --preset windows-release --target canary
+```
+
+Linux Release:
 
 ```bash
-sh ./up.sh
+cmake --preset linux-release
+cmake --build --preset linux-release --target canary -j4
 ```
 
-Default local endpoints:
+Consulte [`docs/development.md`](docs/development.md) e
+[`docs/building/`](docs/building/) para detalhes do ambiente.
 
-- Website/admin: `http://localhost:8080`
-- Client login webservice: `http://localhost:8088/login`
-- Game port: `7172`
+## Login-server local
 
-MyAAC's `login.php` is intentionally removed from the quickstart image. Clients
-should use `login-server` only. See [docs/docker/quickstart-for-beginners.md](docs/docker/quickstart-for-beginners.md)
-for a beginner guide and [docker/DOCKER.md](docker/DOCKER.md) for the full setup,
-environment variables, test account, and troubleshooting guide.
+O Odin fixa a origem e a toolchain do login-server em
+`tools/login-server/login-server.lock.json`. Downloads e binários ficam em
+`.hakai-runtime/`, fora do Git.
 
----
-
-## Hakai 15.25 HTTP Login on Windows
-
-The Hakai client does not authenticate against Canary's legacy port `7171`.
-Protocol `15.25` first posts the account credentials to the official
-OpenTibiaBR login-server and then connects to the advertised game world on
-`7172` with an opaque session token.
-
-Hakai pins the official login-server source and Go toolchain in
-`tools/login-server/login-server.lock.json`. Downloads, source, toolchain,
-binary and logs stay under the ignored `.hakai-runtime` directory.
-
-From the server repository root:
+Instale, inicie e teste:
 
 ```powershell
 .\tools\login-server\Install-HakaiLoginServer.ps1
@@ -76,122 +100,59 @@ From the server repository root:
 .\tools\login-server\Test-HakaiLoginServer.ps1
 ```
 
-The installer verifies both archive hashes, runs the upstream Go tests and
-builds the pinned source. The launcher reads the ignored local `config.lua`
-without printing database credentials, requires `authType = "session"`, binds
-HTTP and gRPC strictly to `127.0.0.1`, and advertises the configured game port.
-Stop a background instance with:
+Para encerrar:
 
 ```powershell
 .\tools\login-server\Stop-HakaiLoginServer.ps1
 ```
 
-The unauthenticated test proves listener and route readiness. To validate the
-character list without placing a password in shell history:
+Os scripts locais mantêm HTTP e gRPC ligados ao loopback. Não exponha o
+login-server diretamente à internet. Um deployment remoto precisa de HTTPS em
+um reverse proxy confiável, mantendo o gRPC privado.
+
+## Testes
+
+Configure e compile os testes nativos no Windows:
 
 ```powershell
-$credential = Get-Credential
-.\tools\login-server\Test-HakaiLoginServer.ps1 `
-  -Email $credential.UserName `
-  -Password $credential.Password `
-  -ExpectedCharacter "Trainer Sample" `
-  -ExpectedVocation "Trainer"
+cmake --preset windows-release-enabled-tests
+cmake --build --preset windows-release-enabled-tests
+ctest --test-dir build/windows-release-enabled-tests --output-on-failure
 ```
 
-The login-server has no native TLS and its HTTP and gRPC listeners share one
-bind address. The launcher therefore refuses remote binds. Remote deployments
-must use a trusted HTTPS reverse proxy on the same host that exposes only the
-loopback HTTP listener; gRPC `9090` remains private. The upstream component is
-licensed under AGPL-3.0.
+Os contratos Lua Pokémon podem ser executados isoladamente com LuaJIT:
 
----
-
-## Documentation
-
-- [Docker beginner quickstart](docs/docker/quickstart-for-beginners.md).
-- [Multiprotocol runtime profiles](docs/systems/multiprotocol.md). Covers the
-  current, 11.00, and 8.60 runtime contracts, port layout, client preparation,
-  and validation checklist.
-- [System documentation](docs/systems/README.md).
-- [Lua API reference and VSCode IntelliSense stubs](docs/lua-api/lua_api.md). Canary generates these files from the C++ Lua bindings during startup when `generateLuaApiDocs` is enabled. The repository `.luarc.json` already adds `docs/lua-api` to the Lua Language Server workspace library; for VSCode workspace settings, run `tools/setup_vscode_lua_api.ps1`.
-
----
-
-## Recommended Tools and Clients
-
-- [Assets Editor](https://github.com/Arch-Mina/Assets-Editor). Use this as the
-  single asset source of truth, then export legacy-compatible `.dat`/`.spr`
-  packages for 8.60 clients from the same current asset set.
-- [Remere's Map Editor](https://github.com/opentibiabr/remeres-map-editor/).
-- [OTClient Redemption](https://github.com/opentibiabr/otclient).
-- [Tibia Extended Client Library](https://github.com/dudantas/Tibia-Extended-Client-Library).
-  Use this to prepare compatible 8.60/11.00 CipSoft clients with extended
-  limits, config-driven login redirect, and per-client local state.
-- [Game Client](https://github.com/dudantas/tibia-client/releases/latest).
-
----
-
-## Nightly Packages
-
-Development builds can be downloaded from GitHub Actions artifacts. They are useful for testing recent changes from the `main` branch, but may include behavior that is not present in stable releases yet.
-
-- [Github Actions](https://github.com/opentibiabr/canary/actions/workflows/ci.yml?query=branch%3Amain).
-
----
-
-## Running Tests
-
-Tests can be run directly from the repository root using CMake test presets:
-
-```bash
-# Configure and build tests for your platform
-cmake --preset linux-debug && cmake --build --preset linux-debug
-
-# Run all tests
-ctest --preset linux-debug
-
-# For other platforms use:
-# ctest --preset macos-debug
-# ctest --preset windows-debug
+```powershell
+luajit tests/lua/test_pokemon_domain.lua
+luajit tests/lua/test_pokemon_team.lua
+luajit tests/lua/test_capture_bag.lua
+luajit tests/lua/test_pokemon_roster_protocol.lua
+luajit tests/lua/test_pokemon_native_moves.lua
+luajit tests/lua/test_npc_messaging.lua
 ```
 
-For detailed testing information including adding tests and framework usage, see [tests/README.md](tests/README.md).
+## Estrutura principal
 
----
+```text
+server/
+├── src/                         # núcleo C++
+├── data-canary/lib/pokemon/     # domínio e regras Pokémon
+├── data-canary/monster/pokemon/ # MonsterTypes
+├── data/                        # recursos compartilhados do Canary
+├── tests/                       # testes C++ e Lua
+├── tools/login-server/          # login HTTP local
+├── schema.sql                   # estrutura inicial do banco
+└── config.lua.dist              # configuração de referência
+```
 
-## Support & Community
+## Upstream e licença
 
-For real-time support, join the [OpenTibiaBR Discord](https://discord.gg/gvTj5sh9Mp).
+Odin deriva do OpenTibiaBR Canary e preserva seus avisos, histórico de autoria
+e licença. O código deste componente é distribuído conforme
+[`LICENSE`](LICENSE), GPL-2.0.
 
-The GitHub issue tracker should be used for bugs, improvements and technical project tasks. It is not a support forum.
+Recursos e documentação upstream:
 
----
-
-## Contributing
-
-Contributions are welcome. You can help in several ways:
-
-- Report bugs through the [Issue Tracker](https://github.com/opentibiabr/canary/issues/new/choose).
-- Submit improvements through [Pull Requests](https://github.com/opentibiabr/canary/pulls).
-- Improve tests, documentation, scripts, datapacks, or C++ code.
-- Validate releases, nightly builds and recent changes.
-
-Before contributing, read the [Code of Conduct](https://github.com/opentibiabr/canary/blob/main/CODE_OF_CONDUCT.md) and the project [Contributing](https://github.com/opentibiabr/canary/blob/main/CONTRIBUTING.md) guide.
-
----
-
-## Sponsorship
-
-Canary is maintained by community contributors. To support development, visit the [OpenTibiaBR sponsors page](https://github.com/sponsors/opentibiabr).
-
----
-
-## Acknowledgements
-
-Thanks to all contributors of [Canary](https://github.com/opentibiabr/canary/graphs/contributors), [OTServBR-Global](https://github.com/opentibiabr/otservbr-global/graphs/contributors) and the OpenTibia community.
-
----
-
-## License
-
-This project is distributed under the [GPL-2.0 license](https://github.com/opentibiabr/canary/blob/main/LICENSE).
+- [Canary](https://github.com/opentibiabr/canary)
+- [Wiki OpenTibiaBR](https://github.com/opentibiabr/canary/wiki)
+- [Documentação local](docs/README.md)
