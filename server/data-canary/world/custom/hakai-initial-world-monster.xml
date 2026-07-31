@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<monsters>
+	<!-- Habitat visual passivo; a IA passiva ainda depende do contrato de criaturas. -->
+	<monster centerx="50040" centery="49843" centerz="7" radius="12">
+		<monster name="Caterpie" x="-2" y="-2" z="7" spawntime="30" />
+		<monster name="Bulbasaur" x="2" y="2" z="7" spawntime="45" />
+	</monster>
+	<!-- Habitat agressivo de teste. -->
+	<monster centerx="50120" centery="49843" centerz="7" radius="12">
+		<monster name="Rattata" x="-2" y="-2" z="7" spawntime="25" />
+		<monster name="Spearow" x="2" y="2" z="7" spawntime="30" />
+	</monster>
+</monsters>

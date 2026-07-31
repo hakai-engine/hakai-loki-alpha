@@ -1,0 +1,35 @@
+{
+  "component": "pokemon-currency-variants",
+  "version": "1.0",
+  "state": "CONCEPT_ASSETS",
+  "integration": "not-bound-to-item-ids",
+  "sheet": {
+    "width": 128,
+    "height": 64,
+    "cellWidth": 32,
+    "cellHeight": 32,
+    "columns": 4,
+    "rows": 2,
+    "frames": 8,
+    "alpha": true,
+    "smooth": false
+  },
+  "assets": [
+    {
+      "file": "currency_1kk_ruby_128x64.png",
+      "palette": "ruby"
+    },
+    {
+      "file": "currency_1kk_gold_128x64.png",
+      "palette": "gold"
+    },
+    {
+      "file": "currency_1kk_amethyst_128x64.png",
+      "palette": "amethyst"
+    },
+    {
+      "file": "currency_1kk_rose_128x64.png",
+      "palette": "rose"
+    }
+  ]
+}

@@ -1,0 +1,675 @@
+PokemonCaptureBagWindow < MainWindow
+  size: 600 520
+  font: verdana-11px-antialised
+  color: #dfdfdf
+
+PokemonTeamWindow < Window
+  size: 760 470
+  font: verdana-11px-antialised
+  color: #eef6fa
+  image-color: #dceaf2ff
+  opacity: 1
+  border-width: 1
+  border-color: #58d8f0
+
+  $dragging:
+    opacity: 1
+
+PokemonRosterCard < UIButton
+  size: 170 78
+  image-source: /images/ui/panel_flat
+  image-color: #ffffffff
+  image-border: 1
+  color: #dfdfdf
+  text-align: left
+  text-offset: 72 0
+  font: verdana-11px-antialised
+  change-cursor-image: true
+  cursor: pointer
+
+  $hover !disabled:
+    image-source: /images/ui/panel_lightflat
+
+  $checked:
+    image-source: /images/ui/panel_lightflat
+    border-width: 1
+    border-color: #a0a0a0
+
+  $disabled:
+    opacity: 0.55
+    change-cursor-image: false
+
+PokemonTeamSlot < UIButton
+  size: 350 94
+  image-source: /images/ui/panel_flat
+  image-color: #dceaf2ff
+  image-border: 1
+  image-smooth: false
+  border-width: 1
+  border-color: #637784
+  color: #eef6fa
+  text-align: center
+  font: verdana-11px-monochrome
+  padding: 5
+  change-cursor-image: true
+  cursor: pointer
+
+  $hover !disabled:
+    image-source: /images/ui/panel_lightflat
+    image-color: #e8f7ffff
+    border-color: #56d9f4
+
+  $checked:
+    image-source: /images/ui/panel_lightflat
+    image-color: #e8f7ffff
+    border-width: 1
+    border-color: #70e8ff
+
+  $disabled:
+    opacity: 0.55
+    change-cursor-image: false
+
+PokemonTeamHpBar < ProgressBar
+  height: 7
+  background-color: #53b949
+  border-width: 1
+  border-color: #213b2a
+
+PokemonTeamControlButton < Button
+  height: 24
+  font: verdana-11px-antialised
+
+PokemonGenderSymbol < UIWidget
+  size: 20 20
+  image-smooth: false
+  phantom: true
+
+PokemonQuickTeamSlot < UIButton
+  size: 220 54
+  image-source: /images/ui/panel_flat
+  image-color: #ffffffff
+  image-border: 1
+  image-smooth: false
+  color: #dfdfdf
+  padding: 3
+  change-cursor-image: true
+  cursor: pointer
+
+  $hover !disabled:
+    image-source: /images/ui/panel_lightflat
+
+  $checked:
+    image-source: /images/ui/panel_lightflat
+    border-width: 1
+    border-color: #6f9f3f
+
+  $disabled:
+    image-source: /images/ui/panel_flat
+    opacity: 0.55
+    change-cursor-image: false
+
+PokemonQuickCompactSlot < PokemonQuickTeamSlot
+  size: 52 52
+  image-source: /images/ui/panel_flat
+  image-color: #ffffffff
+  image-border: 1
+  image-smooth: false
+
+  $hover !disabled:
+    image-source: /images/ui/panel_lightflat
+
+  $checked:
+    image-source: /images/ui/panel_lightflat
+    border-width: 1
+    border-color: #6f9f3f
+
+  $disabled:
+    image-source: /images/ui/panel_flat
+    opacity: 0.55
+
+PokemonQuickHpBar < ProgressBar
+  height: 7
+  background-color: #4f9f3f
+
+PokemonInfoHpBar < ProgressBar
+  height: 7
+  background-color: #53b949
+  border-width: 1
+  border-color: #213b2a
+
+PokemonInfoXpBar < ProgressBar
+  height: 7
+  background-color: #4a99e5
+  border-width: 1
+  border-color: #20324c
+
+PokemonMoveSlot < UIButton
+  size: 122 43
+  image-source: /images/ui/panel_flat
+  image-border: 1
+  color: #e9f5ff
+  change-cursor-image: true
+  cursor: pointer
+
+  $hover !disabled:
+    image-source: /images/ui/panel_lightflat
+    border-width: 1
+    border-color: #5ce3ff
+
+  $disabled:
+    opacity: 0.55
+    change-cursor-image: false
+
+PokemonTopActionBar < Panel
+  size: 80 76
+  background-color: #071e42e8
+  border-width: 1
+  border-color: #287cb5
+  padding: 5
+  phantom: false
+
+PokemonTopBarButton < UIButton
+  size: 68 68
+  background-color: #0a2c55f2
+  border-width: 2
+  border-color: #2f96d0
+  icon-source: /images/game/pokemon_team/poketeam_belt_64
+  icon-size: 64 64
+  icon-offset: 0 0
+  tooltip: Pokemon Team
+  change-cursor-image: true
+  cursor: pointer
+
+  $hover !disabled:
+    background-color: #104270f2
+    border-color: #64e8ff
+
+  $pressed:
+    background-color: #061a36f2
+    border-color: #9af4ff
+    icon-offset: 1 1
+
+  $on:
+    background-color: #541424f2
+    border-color: #ff5368
+
+  $disabled:
+    opacity: 0.45
+    change-cursor-image: false
+
+UIWidget
+  id: pokemonRosterRoot
+  anchors.fill: parent
+  phantom: true
+
+  PokemonTopActionBar
+    id: pokemonTopActionBar
+    anchors.top: parent.top
+    anchors.horizontalCenter: parent.horizontalCenter
+    margin-top: 40
+    visible: false
+
+    PokemonTopBarButton
+      id: pokemonRosterButton
+      anchors.centerIn: parent
+      @onClick: modules.game_pokemon_roster.toggleTeam()
+
+  PokemonCaptureBagWindow
+    id: captureBagWindow
+    text: Capture Bag
+    visible: false
+    draggable: true
+    phantom: false
+    @onEscape: modules.game_pokemon_roster.hideBag()
+
+    Label
+      id: bagStatus
+      anchors.top: parent.top
+      anchors.left: parent.left
+      anchors.right: parent.right
+      height: 18
+      color: #c0c0c0
+      font: verdana-11px-antialised
+      text: Capture Bag
+
+    Label
+      id: bagHint
+      anchors.top: bagStatus.bottom
+      anchors.left: bagStatus.left
+      anchors.right: bagStatus.right
+      margin-top: 4
+      height: 28
+      color: #a8a8a8
+      text: Selecione um Pokemon e depois clique em um slot do time.
+      text-wrap: true
+      font: verdana-11px-monochrome
+
+    ScrollablePanel
+      id: bagList
+      anchors.top: bagHint.bottom
+      anchors.left: parent.left
+      anchors.right: parent.right
+      anchors.bottom: bagFooterSeparator.top
+      margin-top: 8
+      margin-left: 16
+      margin-right: 16
+      margin-bottom: 8
+      vertical-scrollbar: bagScroll
+      layout:
+        type: grid
+        cell-size: 170 78
+        cell-spacing: 8
+        num-columns: 3
+
+    VerticalScrollBar
+      id: bagScroll
+      anchors.top: bagList.top
+      anchors.bottom: bagList.bottom
+      anchors.right: parent.right
+      margin-right: 5
+      step: 78
+      pixels-scroll: true
+
+    HorizontalSeparator
+      id: bagFooterSeparator
+      anchors.left: parent.left
+      anchors.right: parent.right
+      anchors.bottom: parent.bottom
+      margin-bottom: 36
+
+    Panel
+      id: bagFooter
+      anchors.left: parent.left
+      anchors.right: parent.right
+      anchors.bottom: parent.bottom
+      height: 30
+
+      Label
+        id: feedback
+        anchors.left: parent.left
+        anchors.right: bagCloseButton.left
+        anchors.verticalCenter: parent.verticalCenter
+        margin-right: 10
+        height: 18
+        color: #c0c0c0
+        text-align: left
+        font: verdana-11px-monochrome
+
+      Button
+        id: bagCloseButton
+        text: Fechar
+        size: 60 22
+        anchors.right: parent.right
+        anchors.verticalCenter: parent.verticalCenter
+        @onClick: modules.game_pokemon_roster.hideBag()
+
+  UIWindow
+    id: pokemonQuickBar
+    size: 232 367
+    anchors.top: parent.top
+    anchors.left: parent.left
+    margin-top: 50
+    margin-left: 10
+    image-source: /images/ui/miniwindow_body
+    image-border: 4
+    image-border-top: 4
+    image-border-bottom: 4
+    background-color: alpha
+    focusable: false
+    draggable: true
+    visible: false
+    phantom: false
+
+    UIWidget
+      id: quickBarHeader
+      height: 20
+      anchors.top: parent.top
+      anchors.left: parent.left
+      anchors.right: parent.right
+      image-source: /images/ui/miniwindow_header
+      image-border: 4
+      image-border-top: 4
+      image-border-bottom: 4
+      draggable: true
+
+      Label
+        id: quickBarTitle
+        text: Pokemon Team
+        anchors.left: parent.left
+        anchors.right: quickBarManagerButton.left
+        anchors.verticalCenter: parent.verticalCenter
+        margin-left: 6
+        margin-right: 4
+        height: 14
+        color: #d8d8d8
+        font: verdana-11px-monochrome
+        text-align: left
+        phantom: true
+
+      Button
+        id: quickBarManagerButton
+        text: Team
+        size: 42 18
+        anchors.right: quickBarModeButton.left
+        anchors.verticalCenter: parent.verticalCenter
+        margin-right: 2
+        padding: 1
+        font: verdana-11px-monochrome
+        @onClick: modules.game_pokemon_roster.toggleTeam()
+
+      Button
+        id: quickBarModeButton
+        text: <
+        size: 20 18
+        anchors.right: parent.right
+        anchors.verticalCenter: parent.verticalCenter
+        margin-right: 3
+        padding: 1
+        font: verdana-11px-monochrome
+        @onClick: modules.game_pokemon_roster.toggleQuickBarMode()
+
+    Panel
+      id: quickBarSlots
+      anchors.top: quickBarHeader.bottom
+      anchors.left: parent.left
+      anchors.right: parent.right
+      anchors.bottom: parent.bottom
+      margin-top: 2
+      margin-left: 3
+      margin-right: 3
+      margin-bottom: 3
+      background-color: #00000000
+
+  UIWindow
+    id: pokemonInfoBar
+    size: 250 118
+    anchors.top: parent.top
+    anchors.left: parent.left
+    margin-top: 50
+    margin-left: 252
+    image-source: /images/ui/miniwindow_body
+    image-border: 4
+    draggable: true
+    visible: false
+    phantom: false
+
+    Label
+      id: pokeInfoTitle
+      anchors.top: parent.top
+      anchors.left: parent.left
+      anchors.right: parent.right
+      margin-top: 7
+      height: 16
+      text: POKE INFO
+      color: #8eeaff
+      font: verdana-11px-antialised
+      text-align: center
+
+    Label
+      id: pokeInfoDetails
+      anchors.top: pokeInfoTitle.bottom
+      anchors.left: parent.left
+      anchors.right: parent.right
+      margin-top: 3
+      height: 14
+      text: Nenhum Pokemon em campo
+      color: #c0c0c0
+      font: verdana-11px-monochrome
+      text-align: center
+
+    PokemonInfoHpBar
+      id: pokeInfoHp
+      anchors.top: pokeInfoDetails.bottom
+      anchors.left: parent.left
+      anchors.right: parent.right
+      margin-top: 8
+      margin-left: 12
+      margin-right: 12
+
+    Label
+      id: pokeInfoHpText
+      anchors.top: pokeInfoHp.bottom
+      anchors.left: parent.left
+      anchors.right: parent.right
+      margin-top: 2
+      height: 13
+      text: HP -- / --
+      color: #dceaf2
+      font: verdana-11px-monochrome
+      text-align: center
+
+    PokemonInfoXpBar
+      id: pokeInfoXp
+      anchors.top: pokeInfoHpText.bottom
+      anchors.left: parent.left
+      anchors.right: parent.right
+      margin-top: 4
+      margin-left: 12
+      margin-right: 12
+
+    Label
+      id: pokeInfoXpText
+      anchors.top: pokeInfoXp.bottom
+      anchors.left: parent.left
+      anchors.right: parent.right
+      margin-top: 2
+      height: 13
+      text: EXP --
+      color: #a8ccef
+      font: verdana-11px-monochrome
+      text-align: center
+
+  UIWindow
+    id: pokemonMoveBar
+    // Up to twelve learned combat moves: four columns by three rows.
+    size: 520 202
+    anchors.bottom: parent.bottom
+    anchors.horizontalCenter: parent.horizontalCenter
+    margin-bottom: 8
+    image-source: /images/ui/miniwindow_body
+    image-border: 4
+    draggable: true
+    visible: false
+    phantom: false
+
+    Label
+      id: pokemonMoveTitle
+      anchors.top: parent.top
+      anchors.left: parent.left
+      anchors.right: parent.right
+      margin-top: 5
+      height: 15
+      text: MOVES  |  selecione um alvo e clique no golpe
+      color: #8eeaff
+      font: verdana-11px-monochrome
+      text-align: center
+
+    Panel
+      id: pokemonMoveSlots
+      anchors.top: pokemonMoveTitle.bottom
+      anchors.left: parent.left
+      anchors.right: parent.right
+      anchors.bottom: parent.bottom
+      margin-top: 4
+      margin-left: 7
+      margin-right: 7
+      margin-bottom: 5
+      background-color: #00000000
+      layout:
+        type: grid
+        num-columns: 4
+        cell-size: 122 43
+        cell-spacing: 6
+        flow: true
+        fit-children: false
+
+  PokemonTeamWindow
+    id: teamWindow
+    text: POKEMON TEAM
+    anchors.centerIn: parent
+    visible: false
+    draggable: true
+    phantom: false
+    @onEscape: modules.game_pokemon_roster.hideTeam()
+
+    FlatPanel
+      id: activePokemonPanel
+      size: 1 1
+      anchors.top: parent.top
+      anchors.left: parent.left
+      visible: false
+
+      Label
+        id: activeSectionTitle
+        text: Active Pokemon
+        anchors.top: parent.top
+        anchors.left: parent.left
+        anchors.right: parent.right
+        margin-top: 5
+        height: 16
+        color: #c0c0c0
+        text-align: center
+        font: verdana-11px-antialised
+
+      UICreature
+        id: activePortrait
+        size: 190 190
+        anchors.top: activeSectionTitle.bottom
+        anchors.horizontalCenter: parent.horizontalCenter
+        margin-top: 3
+        phantom: true
+        visible: false
+
+      Label
+        id: activeName
+        anchors.top: activePortrait.bottom
+        anchors.left: parent.left
+        anchors.right: parent.right
+        margin-top: 2
+        margin-left: 10
+        margin-right: 10
+        height: 18
+        text: NENHUM POKEMON EM CAMPO
+        color: #dfdfdf
+        text-align: center
+        font: verdana-11px-antialised
+
+      Label
+        id: activeDescription
+        anchors.top: activeName.bottom
+        anchors.left: parent.left
+        anchors.right: parent.right
+        margin-top: 2
+        margin-left: 10
+        margin-right: 10
+        height: 28
+        text: Selecione um slot para liberar um Pokemon.
+        color: #a8a8a8
+        text-align: center
+        text-wrap: true
+        ttf-font: arial
+        ttf-font-size: 10
+
+      PokemonTeamHpBar
+        id: activeHealth
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.bottom: parent.bottom
+        margin-left: 10
+        margin-right: 10
+        margin-bottom: 25
+
+      Label
+        id: activeHealthText
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.bottom: parent.bottom
+        margin-bottom: 5
+        height: 15
+        text: HP -- / --
+        color: #c0c0c0
+        text-align: center
+        font: verdana-11px-monochrome
+
+    Label
+      id: teamSectionTitle
+      text: TIME POKEMON
+      anchors.top: parent.top
+      anchors.left: parent.left
+      anchors.right: parent.right
+      height: 22
+      color: #8eeaff
+      text-align: center
+      font: verdana-11px-antialised
+
+    Panel
+      id: teamSlots
+      anchors.top: teamSectionTitle.bottom
+      anchors.horizontalCenter: parent.horizontalCenter
+      margin-top: 10
+      size: 712 298
+      background-color: alpha
+
+    HorizontalSeparator
+      id: teamFooterSeparator
+      anchors.left: parent.left
+      anchors.right: parent.right
+      anchors.bottom: controlStrip.top
+      margin-bottom: 8
+
+    Panel
+      id: controlStrip
+      anchors.left: parent.left
+      anchors.right: parent.right
+      anchors.bottom: parent.bottom
+      height: 44
+      background-color: #171d22a8
+
+      PokemonTeamControlButton
+        id: activeActionButton
+        text: Recolher
+        size: 105 24
+        anchors.left: parent.left
+        anchors.verticalCenter: parent.verticalCenter
+        margin-left: 8
+        @onClick: modules.game_pokemon_roster.toggleActivePokemon()
+
+      PokemonTeamControlButton
+        id: openBagButton
+        text: Capture Bag
+        size: 105 24
+        anchors.left: activeActionButton.right
+        anchors.verticalCenter: parent.verticalCenter
+        margin-left: 6
+        @onClick: modules.game_pokemon_roster.showBag()
+
+      PokemonTeamControlButton
+        id: teamLockButton
+        text: Lock
+        size: 66 24
+        anchors.left: openBagButton.right
+        anchors.verticalCenter: parent.verticalCenter
+        margin-left: 6
+        @onClick: modules.game_pokemon_roster.toggleTeamLock()
+
+      Label
+        id: syncStatus
+        text: Time sincronizado
+        anchors.left: teamLockButton.right
+        anchors.right: teamCloseButton.left
+        anchors.verticalCenter: parent.verticalCenter
+        margin-left: 10
+        margin-right: 10
+        height: 16
+        color: #8ed9e8
+        text-align: center
+        font: verdana-11px-monochrome
+
+      PokemonTeamControlButton
+        id: teamCloseButton
+        text: Fechar
+        size: 72 24
+        anchors.right: parent.right
+        anchors.verticalCenter: parent.verticalCenter
+        margin-right: 8
+        @onClick: modules.game_pokemon_roster.hideTeam()

@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "campaigns": [
+    {
+      "offerId": 3360,
+      "name": "Premium 360 - 50% OFF",
+      "enabled": true,
+      "basePrice": 3000,
+      "price": 1500,
+      "startsAt": "2026-07-24T00:00:00",
+      "endsAt": "2026-08-24T23:59:59"
+    },
+    {
+      "offerId": 3365,
+      "name": "Premium 360 - 50% OFF",
+      "enabled": true,
+      "basePrice": 3000,
+      "price": 1500,
+      "startsAt": "2026-07-24T00:00:00",
+      "endsAt": "2026-08-24T23:59:59"
+    },
+    {
+      "offerId": 3780,
+      "name": "Premium 360 - 50% OFF",
+      "enabled": true,
+      "basePrice": 3000,
+      "price": 1500,
+      "startsAt": "2026-07-24T00:00:00",
+      "endsAt": "2026-08-24T23:59:59"
+    }
+  ]
+}

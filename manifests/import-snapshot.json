@@ -1,0 +1,36 @@
+{
+  "repository": "hakai-engine/hakai-loki-alpha",
+  "imported_at": "2026-07-31",
+  "mode": "publishable working-tree snapshot",
+  "components": {
+    "server": {
+      "name": "Odin",
+      "source_directory": "hakai-engine-server-odin",
+      "source_branch": "dudantas/pokemon-foundation",
+      "source_head": "3f17d4ab2f3b3663eaee49a7981a2d6a8079b488",
+      "selected_files": 6684,
+      "selected_bytes": 69484060,
+      "excluded_files": 705,
+      "excluded_bytes": 1387474737
+    },
+    "client": {
+      "name": "Thor",
+      "source_directory": "hakai-engine-client-thor",
+      "source_branch": "main",
+      "source_head": "465b7a217e87502bb7f9980bf6e099718d0a9a49",
+      "selected_files": 5584,
+      "selected_bytes": 103311479,
+      "excluded_files": 2030,
+      "excluded_bytes": 33656461
+    }
+  },
+  "excluded_content": [
+    "nested .git and .github directories",
+    "builds, logs, databases and local configuration",
+    "private keys and credentials",
+    "archives, backups and generated caches",
+    "downloaded client asset packages",
+    "client/modules/game_wheel",
+    "generated server asset synchronization reports"
+  ]
+}

@@ -1,0 +1,31 @@
+* text=auto eol=lf
+
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+*.7z binary
+*.bmp binary
+*.dat binary
+*.dll binary
+*.exe binary
+*.gif binary
+*.ico binary
+*.jpeg binary
+*.jpg binary
+*.lzma binary
+*.mp3 binary
+*.ogg binary
+*.otbm binary
+*.otb binary
+*.otfont text eol=lf
+*.otml text eol=lf
+*.otui text eol=lf
+*.otmod text eol=lf
+*.pdb binary
+*.png binary
+*.rar binary
+*.spr binary
+*.ttf binary
+*.wav binary
+*.webp binary
+*.zip binary

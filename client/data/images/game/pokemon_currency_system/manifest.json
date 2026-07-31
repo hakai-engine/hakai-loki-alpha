@@ -1,0 +1,94 @@
+{
+  "component": "pokemon-currency-system-art",
+  "version": "1.1",
+  "state": "CONCEPT_ASSETS",
+  "integration": "not-bound-to-item-ids",
+  "noteGeometry": "exact-reference-alpha-mask",
+  "labelStyle": "integrated-perspective-pixel-text",
+  "conversion": {
+    "proposal": "100 cents = 1 dollar",
+    "implemented": false
+  },
+  "sheet": {
+    "width": 128,
+    "height": 64,
+    "cellWidth": 32,
+    "cellHeight": 32,
+    "columns": 4,
+    "rows": 2,
+    "stackStates": 8,
+    "alpha": true,
+    "smooth": false
+  },
+  "preview": "currency_family_preview_128x128.png",
+  "coins": [
+    {
+      "denomination": "1 cent",
+      "label": "1C",
+      "file": "coin_1c_sheet_128x64.png"
+    },
+    {
+      "denomination": "1 dollar",
+      "label": "$1",
+      "file": "coin_1d_sheet_128x64.png"
+    }
+  ],
+  "notes": [
+    {
+      "denomination": "1",
+      "file": "note_1_sheet_128x64.png"
+    },
+    {
+      "denomination": "2",
+      "file": "note_2_sheet_128x64.png"
+    },
+    {
+      "denomination": "5",
+      "file": "note_5_sheet_128x64.png"
+    },
+    {
+      "denomination": "20",
+      "file": "note_20_sheet_128x64.png"
+    },
+    {
+      "denomination": "50",
+      "file": "note_50_sheet_128x64.png"
+    },
+    {
+      "denomination": "100",
+      "file": "note_100_sheet_128x64.png"
+    },
+    {
+      "denomination": "200",
+      "file": "note_200_sheet_128x64.png"
+    },
+    {
+      "denomination": "1K",
+      "file": "note_1k_sheet_128x64.png"
+    },
+    {
+      "denomination": "10K",
+      "file": "note_10k_sheet_128x64.png"
+    },
+    {
+      "denomination": "100K",
+      "file": "note_100k_sheet_128x64.png"
+    },
+    {
+      "denomination": "1M",
+      "file": "note_1m_sheet_128x64.png"
+    },
+    {
+      "denomination": "10M",
+      "file": "note_10m_sheet_128x64.png"
+    },
+    {
+      "denomination": "100M",
+      "file": "note_100m_sheet_128x64.png"
+    },
+    {
+      "denomination": "1B",
+      "file": "note_1b_sheet_128x64.png"
+    }
+  ]
+}

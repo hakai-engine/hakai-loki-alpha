@@ -1,0 +1,18 @@
+-- Copy this file, rename it to NNN_species.lua and add the filename to
+-- PokemonSpecies.loadCatalog(). Never duplicate runtime defaults here.
+return {
+	id = 0,
+	name = "Example",
+	types = { "normal" },
+	baseStats = { hp = 1, attack = 1, defense = 1, specialAttack = 1, specialDefense = 1, speed = 1 },
+	gender = { male = 500, female = 500, genderless = 0 },
+	catchRate = 1,
+	baseExperience = 1,
+	evolution = nil,
+	evolutions = {
+		-- { targetSpeciesId = 0, mode = "level", level = 16 },
+		-- { targetSpeciesId = 0, mode = "stone", stone = "fire-stone" },
+		-- { targetSpeciesId = 0, mode = "level_stone", level = 32, stone = "moon-stone" },
+	},
+	runtime = { placeholder = true },
+}
