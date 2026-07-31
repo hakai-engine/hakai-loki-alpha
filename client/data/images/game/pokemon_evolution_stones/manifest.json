@@ -1,0 +1,49 @@
+{
+  "component": "pokemon-evolution-stones",
+  "version": "1.0",
+  "state": "CONCEPT_ASSETS",
+  "integration": "not-bound-to-item-ids",
+  "assets": [
+    {
+      "type": "fire",
+      "files": [
+        "evolution_stone_fire_64.png",
+        "evolution_stone_fire_32.png"
+      ]
+    },
+    {
+      "type": "water",
+      "files": [
+        "evolution_stone_water_64.png",
+        "evolution_stone_water_32.png"
+      ]
+    },
+    {
+      "type": "thunder",
+      "files": [
+        "evolution_stone_thunder_64.png",
+        "evolution_stone_thunder_32.png"
+      ]
+    },
+    {
+      "type": "leaf",
+      "files": [
+        "evolution_stone_leaf_64.png",
+        "evolution_stone_leaf_32.png"
+      ]
+    },
+    {
+      "type": "moon",
+      "files": [
+        "evolution_stone_moon_64.png",
+        "evolution_stone_moon_32.png"
+      ]
+    }
+  ],
+  "rendering": {
+    "alpha": true,
+    "smooth": false,
+    "masterSize": 64,
+    "inventorySize": 32
+  }
+}

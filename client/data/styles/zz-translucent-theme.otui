@@ -1,0 +1,316 @@
+// Tibia Modern Glass
+// Safe OTUI-only overlay loaded after the official styles.
+// It preserves the original geometry, textures, fonts and Tibia grayscale
+// palette. Only tint, alpha and interaction contrast are adjusted.
+
+// ---------------------------------------------------------------------------
+// Level 1: primary windows (82% smoked glass)
+// ---------------------------------------------------------------------------
+
+Window < Window
+  color: #e4e4e4
+  image-color: #eef0f2ff
+  opacity: 1
+  border-width: 1
+  border-color: #49d8f2
+
+  $dragging:
+    opacity: 1
+
+  UIWidget
+    id: pokemonGlassBadge
+    size: 16 16
+    anchors.top: parent.top
+    anchors.left: parent.left
+    margin-top: -31
+    margin-left: -10
+    image-source: /images/ui/pokemon_glass/pokeball_header
+    phantom: true
+
+HeadlessWindow < HeadlessWindow
+  image-color: #eef0f2ff
+  opacity: 1
+
+  $dragging:
+    opacity: 1
+
+NewWindow < NewWindow
+  color: #d7d7d7
+  image-color: #eef0f2ff
+  opacity: 1
+  border-width: 1
+  border-color: #49d8f2
+
+  $dragging:
+    opacity: 1
+
+  UIWidget
+    id: pokemonGlassBadge
+    size: 16 16
+    anchors.top: parent.top
+    anchors.left: parent.left
+    margin-top: -15
+    image-source: /images/ui/pokemon_glass/pokeball_header
+    phantom: true
+
+NewHeadlessWindow < NewHeadlessWindow
+  image-color: #eef0f2ff
+  opacity: 1
+
+  $dragging:
+    opacity: 1
+
+WindowCyclopedia < WindowCyclopedia
+  color: #d7d7d7
+  image-color: #eef0f2ff
+  opacity: 1
+  border-width: 1
+  border-color: #49d8f2
+
+  $dragging:
+    opacity: 1
+
+  UIWidget
+    id: pokemonGlassBadge
+    size: 16 16
+    anchors.top: parent.top
+    anchors.left: parent.left
+    margin-top: -15
+    image-source: /images/ui/pokemon_glass/pokeball_header
+    phantom: true
+
+WindowPanel < WindowPanel
+  image-color: #eef0f2ff
+
+FloatingInputWindow < FloatingInputWindow
+  image-color: #eef0f2ff
+  opacity: 1
+
+  $dragging:
+    opacity: 1
+
+// ---------------------------------------------------------------------------
+// Level 2: docked and secondary windows (76% glass)
+// ---------------------------------------------------------------------------
+
+MiniWindow < MiniWindow
+  color: #dedede
+  image-color: #e9ecefff
+  border-width: 1
+  border-color: #3aa9c2
+
+  UIWidget
+    id: pokemonGlassBadge
+    size: 12 12
+    anchors.top: parent.top
+    anchors.left: parent.left
+    margin-top: 2
+    margin-left: 4
+    image-source: /images/ui/pokemon_glass/pokeball_header
+    phantom: true
+
+MiniQtScrollableWindow < MiniQtScrollableWindow
+  color: #dedede
+  image-color: #e9ecefff
+
+MiniQtWindow < MiniQtWindow
+  color: #dedede
+  image-color: #e9ecefff
+
+// ---------------------------------------------------------------------------
+// Level 3: inner panels (66% glass)
+// ---------------------------------------------------------------------------
+
+FlatPanel < FlatPanel
+  image-color: #e8eaedff
+  border-width: 1
+  border-color: #426f80
+
+ScrollableFlatPanel < ScrollableFlatPanel
+  image-color: #e8eaedff
+  border-width: 1
+  border-color: #426f80
+
+LightFlatPanel < LightFlatPanel
+  image-color: #edf0f2ff
+  border-width: 1
+  border-color: #568294
+
+TextList < TextList
+  border-color: #73767a
+  background-color: #3b3d40b8
+
+HorizontalList < HorizontalList
+  border-color: #73767a
+  background-color: #3b3d40b8
+
+VerticalList < VerticalList
+  border-color: #73767a
+  background-color: #3b3d40b8
+
+TableRow < TableRow
+  even-background-color: #00000000
+  odd-background-color: #00000028
+
+  $focus:
+    background-color: #355d89cc
+    color: #ffffff
+
+TableHeaderColumn < TableHeaderColumn
+  image-color: #eef0f2e8
+
+// ---------------------------------------------------------------------------
+// Input surfaces (90% glass)
+// ---------------------------------------------------------------------------
+
+TextEdit < TextEdit
+  color: #e2e2e2
+  image-color: #f1f2f3ff
+  selection-background-color: #5d7590
+  border-width: 1
+  border-color: #3f7185
+
+AccTextEdit < AccTextEdit
+  color: #e2e2e2
+  image-color: #f1f2f3ff
+  selection-background-color: #5d7590
+
+TextQtEdit < TextQtEdit
+  color: #e2e2e2
+  background-color: #303235e6
+  selection-background-color: #5d7590
+
+ComboBox < ComboBox
+  color: #dedede
+  image-color: #f1f2f3ff
+  border-width: 1
+  border-color: #3f7185
+
+ComboBoxRounded < ComboBoxRounded
+  color: #dedede
+  image-color: #f1f2f3ff
+
+QtComboBox < QtComboBox
+  color: #dedede
+  image-color: #f1f2f3ff
+
+// ---------------------------------------------------------------------------
+// Menus (85% glass) and readable hover states
+// ---------------------------------------------------------------------------
+
+ComboBoxPopupMenu < ComboBoxPopupMenu
+  image-color: #eef0f2ff
+
+ComboBoxPopupScrollMenu < ComboBoxPopupScrollMenu
+  image-color: #eef0f2ff
+
+ComboBoxRoundedPopupMenu < ComboBoxRoundedPopupMenu
+  image-color: #eef0f2ff
+
+ComboBoxRoundedPopupScrollMenu < ComboBoxRoundedPopupScrollMenu
+  image-color: #eef0f2ff
+
+QtComboBoxPopupMenu < QtComboBoxPopupMenu
+  image-color: #eef0f2ff
+
+QtComboBoxPopupScrollMenu < QtComboBoxPopupScrollMenu
+  image-color: #eef0f2ff
+
+PopupMenu < PopupMenu
+  image-color: #eef0f2ff
+
+PopupScrollMenu < PopupScrollMenu
+  image-color: #eef0f2ff
+
+PopupMenuButton < PopupMenuButton
+  color: #dedede
+
+  $hover !disabled:
+    color: #ffffff
+    background-color: #ffffff2e
+
+PopupScrollMenuButton < PopupScrollMenuButton
+  color: #d5d5d5
+
+  $hover !disabled:
+    color: #ffffff
+    background-color: #ffffff2e
+
+// ---------------------------------------------------------------------------
+// Controls remain almost opaque to keep labels and states crisp
+// ---------------------------------------------------------------------------
+
+Button < Button
+  image-color: #f0f1f2f2
+
+  $hover !disabled:
+    image-color: #ffffffff
+
+  $pressed:
+    image-color: #d8dadef2
+
+  $on:
+    image-color: #d8dadef2
+
+  $checked:
+    image-color: #d8dadef2
+
+QtButton < QtButton
+  image-color: #f0f1f2f2
+
+  $hover !disabled:
+    image-color: #ffffffff
+
+  $pressed:
+    image-color: #d8dadef2
+
+TabButton < TabButton
+  image-color: #eef0f2f2
+
+  $hover !on:
+    image-color: #ffffffff
+
+  $on:
+    image-color: #d8dadef2
+
+// ---------------------------------------------------------------------------
+// Shell and status surfaces
+// ---------------------------------------------------------------------------
+
+TopMenuPanel < TopMenuPanel
+  image-color: #eef0f2ff
+  border-width-bottom: 1
+  border-color-bottom: #49d8f2
+
+StatsBarDarkBackground < StatsBarDarkBackground
+  image-color: #e9ecefc2
+
+StatsBarTopWithShrink < StatsBarTopWithShrink
+  image-color: #e9ecefc2
+
+StatsBarBottomWithShrink < StatsBarBottomWithShrink
+  image-color: #e9ecefc2
+
+TopStatsBarLargeOnTop < TopStatsBarLargeOnTop
+  image-color: #e9ecefc2
+
+TopStatsBarParallelOnTop < TopStatsBarParallelOnTop
+  image-color: #e9ecefc2
+
+TopStatsBarDefaultOnTop < TopStatsBarDefaultOnTop
+  image-color: #e9ecefc2
+
+TopStatsBarCompactOnTop < TopStatsBarCompactOnTop
+  image-color: #e9ecefc2
+
+TopStatsBarLargeOnBottom < TopStatsBarLargeOnBottom
+  image-color: #e9ecefc2
+
+TopStatsBarParallelOnBottom < TopStatsBarParallelOnBottom
+  image-color: #e9ecefc2
+
+TopStatsBarDefaultOnBottom < TopStatsBarDefaultOnBottom
+  image-color: #e9ecefc2
+
+TopStatsBarCompactOnBottom < TopStatsBarCompactOnBottom
+  image-color: #e9ecefc2

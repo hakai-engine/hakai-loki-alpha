@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<monsters>
+	<!-- Development Kanto habitats around Strongarm/Professor Oak.
+	     XML remains the authoritative respawn source; no runtime polling spawner. -->
+	<monster centerx="1935" centery="1345" centerz="7" radius="4">
+		<monster name="Bulbasaur" x="-2" y="-1" z="7" spawntime="30" />
+		<monster name="Caterpie" x="1" y="2" z="7" spawntime="20" />
+		<monster name="Weedle" x="3" y="-2" z="7" spawntime="20" />
+	</monster>
+	<monster centerx="1951" centery="1345" centerz="7" radius="4">
+		<monster name="Charmander" x="2" y="-1" z="7" spawntime="30" />
+		<monster name="Rattata" x="-1" y="2" z="7" spawntime="20" />
+		<monster name="Spearow" x="3" y="2" z="7" spawntime="25" />
+	</monster>
+	<monster centerx="1943" centery="1337" centerz="7" radius="4">
+		<monster name="Squirtle" x="-2" y="-2" z="7" spawntime="30" />
+		<monster name="Pidgey" x="1" y="-2" z="7" spawntime="20" />
+		<monster name="Pikachu" x="3" y="1" z="7" spawntime="45" />
+	</monster>
+	<monster centerx="1943" centery="1353" centerz="7" radius="4">
+		<monster name="Nidoran F" x="-2" y="1" z="7" spawntime="30" />
+		<monster name="Nidoran M" x="2" y="1" z="7" spawntime="30" />
+		<monster name="Oddish" x="0" y="-2" z="7" spawntime="25" />
+	</monster>
+	<!-- Passive, stationary target for validating melee, moves, areas and
+	     visual effects without loot, experience or retaliation. -->
+	<monster centerx="1943" centery="1345" centerz="7" radius="4">
+		<monster name="Training Stake" x="-3" y="3" z="7" spawntime="10" />
+	</monster>
+</monsters>

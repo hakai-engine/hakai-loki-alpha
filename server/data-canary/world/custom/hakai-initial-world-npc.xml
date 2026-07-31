@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<npcs>
+	<npc centerx="50023" centery="50014" centerz="7" radius="1">
+		<npc name="Professor Oak" x="0" y="0" z="7" spawntime="60" />
+	</npc>
+	<npc centerx="50058" centery="50013" centerz="7" radius="1">
+		<npc name="Nurse Joy" x="0" y="0" z="7" spawntime="60" />
+	</npc>
+	<npc centerx="50100" centery="50014" centerz="7" radius="1">
+		<npc name="Market Clerk" x="0" y="0" z="7" spawntime="60" />
+	</npc>
+	<npc centerx="50132" centery="50014" centerz="7" radius="1">
+		<npc name="Pokemon Buyer" x="0" y="0" z="7" spawntime="60" />
+	</npc>
+</npcs>

@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "component": "opentibiabr/login-server",
+  "upstream": "https://github.com/opentibiabr/login-server",
+  "license": "AGPL-3.0",
+  "source": {
+    "commit": "2612930de4d97123a397f8f2cd0d5f784094af40",
+    "archive": {
+      "url": "https://codeload.github.com/opentibiabr/login-server/zip/2612930de4d97123a397f8f2cd0d5f784094af40",
+      "sha256": "D0524F49F899E17F1D777B149466DE40E0348C68B294923F1289090A5DE14A03"
+    }
+  },
+  "overlays": [
+    {
+      "source": "overlays/src/api/login.go",
+      "destination": "src/api/login.go",
+      "upstreamSha256": "0153591ED863021D9290341FC50A50013D1F9F4F9C01997D442BAF00E765E007",
+      "sha256": "06625A2FEFF38F8913BB635BE635899B39FE0B639635B2F98763D7B2DE5AF6AC"
+    },
+    {
+      "source": "overlays/src/database/account.go",
+      "destination": "src/database/account.go",
+      "upstreamSha256": "1C9FD2D0CF694F89A5977FF2C95C079A3601AD9967B867F3188AC59BB7C90C10",
+      "sha256": "8D1A54234965EBD04F1257EFE269D62DF88C9CD7A7D7524FE38169CA5C5966D9"
+    },
+    {
+      "source": "overlays/src/database/hakai_session_test.go",
+      "destination": "src/database/hakai_session_test.go",
+      "upstreamSha256": null,
+      "sha256": "510AE88DEC475B462655A7EB125F90710A0EE625AC485C392DC983314BBB7C2B"
+    },
+    {
+      "source": "overlays/src/database/players.go",
+      "destination": "src/database/players.go",
+      "upstreamSha256": "0C38E76701FEF2E2F6E0768D8F364DB638E10C5DEDBD724870EB5D7D1D896EC5",
+      "sha256": "A7AEB2328AE4595DB5977CA10BBBBCCBB4A09638D7C279F6A8DBF15806B07ED7"
+    },
+    {
+      "source": "overlays/src/database/hakai_players_test.go",
+      "destination": "src/database/hakai_players_test.go",
+      "upstreamSha256": null,
+      "sha256": "04E4F1DB830735113043FE81297D7311F0FBF2C641A0977CAFA9566033F52D5E"
+    }
+  ],
+  "toolchain": {
+    "name": "Go",
+    "version": "go1.25.12",
+    "platform": "windows-amd64",
+    "archive": {
+      "url": "https://go.dev/dl/go1.25.12.windows-amd64.zip",
+      "sha256": "D5DC82DA351B00E5EEDD04F41356817D674CC4308131F0F638A5B14C5C3AF4CB"
+    }
+  },
+  "build": {
+    "package": "./src/",
+    "flags": [
+      "-trimpath",
+      "-buildvcs=false",
+      "-ldflags=-buildid="
+    ],
+    "output": ".hakai-runtime/login-server/bin/login-server.exe"
+  }
+}

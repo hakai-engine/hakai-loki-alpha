@@ -1,0 +1,87 @@
+package database
+
+import (
+	"database/sql"
+	"errors"
+
+	"github.com/opentibiabr/login-server/src/configs"
+	"github.com/opentibiabr/login-server/src/grpc/login_proto_messages"
+	"github.com/opentibiabr/login-server/src/serviceerrors"
+)
+
+const hakaiTrainerVocationID = 11
+
+func LoadPlayers(db *sql.DB, acc *Account) ([]*login_proto_messages.Character, error) {
+	if db == nil {
+		return nil, serviceerrors.LoginService(
+			serviceerrors.CodeDatabaseUnavailable,
+			"DATABASE_UNAVAILABLE",
+			errors.New("database connection is nil"),
+		)
+	}
+	if acc == nil {
+		return nil, serviceerrors.LoginService(
+			serviceerrors.CodeCharacterListLoadFailed,
+			"CHARACTER_LIST_LOAD_FAILED",
+			errors.New("account is nil"),
+		)
+	}
+
+	var players []*login_proto_messages.Character
+	const statement = `SELECT name, level, sex, vocation, looktype, lookhead, lookbody, looklegs,
+		lookfeet, lookaddons, lastlogin
+		FROM players
+		WHERE account_id = ? AND vocation = ?`
+
+	rows, err := db.Query(statement, acc.ID, hakaiTrainerVocationID)
+	if err != nil {
+		return nil, serviceerrors.LoginService(
+			serviceerrors.CodeCharacterListLoadFailed,
+			"CHARACTER_LIST_LOAD_FAILED",
+			err,
+		)
+	}
+	defer rows.Close()
+
+	vocations := configs.GetServerVocations()
+	for rows.Next() {
+		player := login_proto_messages.Character{
+			WorldId: 0,
+			Info:    &login_proto_messages.CharacterInfo{},
+			Outfit:  &login_proto_messages.CharacterOutfit{},
+		}
+
+		var vocation int
+		if err = rows.Scan(
+			&player.Info.Name, &player.Info.Level, &player.Info.Sex, &vocation,
+			&player.Outfit.LookType, &player.Outfit.LookHead, &player.Outfit.LookBody,
+			&player.Outfit.LookLegs, &player.Outfit.LookFeet, &player.Outfit.Addons,
+			&player.Info.LastLogin,
+		); err != nil {
+			return nil, serviceerrors.LoginService(
+				serviceerrors.CodeCharacterListLoadFailed,
+				"CHARACTER_LIST_LOAD_FAILED",
+				err,
+			)
+		}
+
+		if acc.LastLogin < player.Info.LastLogin {
+			acc.LastLogin = player.Info.LastLogin
+		}
+		if vocation >= 0 && vocation < len(vocations) {
+			player.Info.Vocation = vocations[vocation]
+		}
+
+		players = append(players, &player)
+	}
+
+	if err = rows.Err(); err != nil {
+		return nil, serviceerrors.LoginService(
+			serviceerrors.CodeCharacterListLoadFailed,
+			"CHARACTER_LIST_LOAD_FAILED",
+			err,
+		)
+	}
+
+	return players, nil
+}

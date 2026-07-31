@@ -1,0 +1,12 @@
+Module
+  name: game_hakai_combat_fx
+  description: Semantic Pokemon combat feedback (screen shake and creature jump)
+  author: Hakai Engine
+  sandboxed: true
+  autoload: true
+  autoload-priority: 1200
+  scripts: [ combat_fx ]
+  @onLoad: init()
+  @onUnload: terminate()
+  dependencies:
+    - game_interface

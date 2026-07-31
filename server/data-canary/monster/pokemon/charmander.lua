@@ -1,0 +1,1 @@
+PokemonMonsterFactory.register(4)

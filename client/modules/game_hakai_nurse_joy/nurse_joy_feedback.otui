@@ -1,0 +1,63 @@
+HakaiNurseJoyFeedback < UIWidget
+  size: 470 118
+  anchors.top: parent.top
+  anchors.horizontalCenter: parent.horizontalCenter
+  margin-top: 42
+  image-source: /images/ui/window
+  image-border: 20
+  background-color: #090716f2
+  border-width: 1
+  border-color: #7136b8
+  phantom: true
+  focusable: false
+
+  UIWidget
+    id: accent
+    anchors.left: parent.left
+    anchors.top: parent.top
+    anchors.bottom: parent.bottom
+    width: 5
+    margin-left: 7
+    margin-top: 9
+    margin-bottom: 9
+    background-color: #22d9ea
+    phantom: true
+
+  UICreature
+    id: portrait
+    size: 82 82
+    anchors.left: parent.left
+    anchors.verticalCenter: parent.verticalCenter
+    margin-left: 20
+    creature-size: 64
+    phantom: true
+
+  UILabel
+    id: title
+    text: NURSE JOY
+    anchors.left: portrait.right
+    anchors.top: parent.top
+    anchors.right: parent.right
+    margin-left: 12
+    margin-top: 20
+    margin-right: 20
+    color: #22d9ea
+    font: terminus-14px-bold
+    phantom: true
+
+  UILabel
+    id: message
+    anchors.left: portrait.right
+    anchors.top: title.bottom
+    anchors.right: parent.right
+    margin-left: 12
+    margin-top: 8
+    margin-right: 20
+    color: #f1e9ff
+    font: verdana-11px-rounded
+    text-wrap: true
+    text-auto-resize: true
+    phantom: true
+
+HakaiNurseJoyFeedback
+  id: nurseJoyFeedback

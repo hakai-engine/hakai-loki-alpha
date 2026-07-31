@@ -1,0 +1,12 @@
+Module
+  name: game_pokemon_roster
+  description: Authoritative Pokemon Capture Bag and six-slot team
+  author: Hakai Engine
+  sandboxed: true
+  autoload: false
+  scripts: [ pokemon_roster ]
+  @onLoad: pokemonRosterController:init()
+  @onUnload: pokemonRosterController:terminate()
+  dependencies:
+    - game_interface
+    - game_hakai_pokemon_domain

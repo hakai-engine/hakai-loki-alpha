@@ -1,0 +1,17 @@
+name: Validate Loki tree
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  publishable-tree:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate publishable tree
+        shell: pwsh
+        run: ./tools/Validate-LokiTree.ps1

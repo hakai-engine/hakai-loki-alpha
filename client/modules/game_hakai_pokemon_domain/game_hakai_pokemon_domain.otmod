@@ -1,0 +1,10 @@
+Module
+  name: game_hakai_pokemon_domain
+  description: Shared Pokemon type and move category contract
+  author: Hakai Engine
+  sandboxed: true
+  autoload: true
+  autoload-priority: 500
+  scripts: [ pokemon_domain ]
+  dependencies:
+    - gamelib

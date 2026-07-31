@@ -1,0 +1,296 @@
+{
+  "component": "pokemon-team-control",
+  "version": "2.6",
+  "state": "PRODUCTION_READY",
+  "sourceModel": "output/imagegen/hakai-pokemon-team-control-v1-model.png",
+  "targetModule": "modules/game_pokemon_roster",
+  "targetWindow": {
+    "id": "teamWindow",
+    "width": 1360,
+    "height": 676
+  },
+  "assets": [
+    {
+      "file": "poketeam_belt_64.png",
+      "role": "64x64 upper Poketeam toggle icon",
+      "targetWidget": "PokemonTopBarButton",
+      "width": 64,
+      "height": 64,
+      "alpha": true,
+      "smooth": false
+    },
+    {
+      "file": "gender_symbols/gender_male_64.png",
+      "role": "high-contrast male gender pixel-art master icon",
+      "targetWidget": "PokemonGenderSymbol",
+      "width": 64,
+      "height": 64,
+      "alpha": true,
+      "smooth": false
+    },
+    {
+      "file": "gender_symbols/gender_female_64.png",
+      "role": "high-contrast female gender pixel-art master icon",
+      "targetWidget": "PokemonGenderSymbol",
+      "width": 64,
+      "height": 64,
+      "alpha": true,
+      "smooth": false
+    },
+    {
+      "file": "gender_symbols/gender_genderless_64.png",
+      "role": "golden star genderless pixel-art master icon",
+      "targetWidget": "PokemonGenderSymbol",
+      "width": 64,
+      "height": 64,
+      "alpha": true,
+      "smooth": false
+    },
+    {
+      "file": "gender_symbols/gender_male_20.png",
+      "role": "male gender native Team-card icon",
+      "targetWidget": "PokemonGenderSymbol",
+      "width": 20,
+      "height": 20,
+      "alpha": true,
+      "smooth": false
+    },
+    {
+      "file": "gender_symbols/gender_female_20.png",
+      "role": "female gender native Team-card icon",
+      "targetWidget": "PokemonGenderSymbol",
+      "width": 20,
+      "height": 20,
+      "alpha": true,
+      "smooth": false
+    },
+    {
+      "file": "gender_symbols/gender_genderless_20.png",
+      "role": "golden star genderless native Team-card icon",
+      "targetWidget": "PokemonGenderSymbol",
+      "width": 20,
+      "height": 20,
+      "alpha": true,
+      "smooth": false
+    },
+    {
+      "file": "team_window_shell.png",
+      "role": "full native-size Pokemon Team production shell",
+      "targetWidget": "teamWindow",
+      "width": 1360,
+      "height": 676,
+      "alpha": true,
+      "smooth": false
+    },
+    {
+      "file": "team_slot_normal_390x138.png",
+      "role": "wide team slot",
+      "targetWidget": "HakaiTeamSlot",
+      "state": "normal",
+      "width": 390,
+      "height": 138,
+      "alpha": true,
+      "smooth": false
+    },
+    {
+      "file": "team_slot_hover_390x138.png",
+      "role": "wide team slot",
+      "targetWidget": "HakaiTeamSlot",
+      "state": "hover",
+      "width": 390,
+      "height": 138,
+      "alpha": true,
+      "smooth": false
+    },
+    {
+      "file": "team_slot_active_390x138.png",
+      "role": "wide team slot",
+      "targetWidget": "HakaiTeamSlot",
+      "state": "active",
+      "width": 390,
+      "height": 138,
+      "alpha": true,
+      "smooth": false
+    },
+    {
+      "file": "crest_master_ball.png",
+      "role": "header crest",
+      "targetWidget": "teamCrest",
+      "alpha": true,
+      "smooth": false
+    },
+    {
+      "file": "corner_pokeball_left.png",
+      "role": "lower-left ornament",
+      "targetWidget": "teamCornerLeft",
+      "alpha": true,
+      "smooth": false
+    },
+    {
+      "file": "corner_pokeball_right.png",
+      "role": "lower-right ornament",
+      "targetWidget": "teamCornerRight",
+      "alpha": true,
+      "smooth": false
+    },
+    {
+      "file": "slot_normal.png",
+      "role": "slot and control 9-slice",
+      "targetWidget": "HakaiTeamSlot",
+      "state": "normal",
+      "imageBorder": 18,
+      "alpha": true,
+      "smooth": false
+    },
+    {
+      "file": "slot_hover.png",
+      "role": "slot and control 9-slice",
+      "targetWidget": "HakaiTeamSlot",
+      "state": "hover",
+      "imageBorder": 18,
+      "alpha": true,
+      "smooth": false
+    },
+    {
+      "file": "slot_selected.png",
+      "role": "slot and control 9-slice",
+      "targetWidget": "HakaiTeamSlot",
+      "state": "active",
+      "imageBorder": 18,
+      "alpha": true,
+      "smooth": false
+    },
+    {
+      "file": "close_normal.png",
+      "role": "close button",
+      "targetWidget": "teamCloseButton",
+      "state": "normal",
+      "alpha": true,
+      "smooth": false
+    },
+    {
+      "file": "close_hover.png",
+      "role": "close button",
+      "targetWidget": "teamCloseButton",
+      "state": "hover",
+      "alpha": true,
+      "smooth": false
+    },
+    {
+      "file": "close_pressed.png",
+      "role": "close button",
+      "targetWidget": "teamCloseButton",
+      "state": "pressed",
+      "alpha": true,
+      "smooth": false
+    },
+    {
+      "file": "pokebar_slot_normal.png",
+      "role": "expanded quick-bar slot",
+      "targetWidget": "HakaiQuickTeamSlot",
+      "state": "normal",
+      "width": 300,
+      "height": 72,
+      "alpha": true,
+      "smooth": false
+    },
+    {
+      "file": "pokebar_slot_hover.png",
+      "role": "expanded quick-bar slot",
+      "targetWidget": "HakaiQuickTeamSlot",
+      "state": "hover",
+      "width": 300,
+      "height": 72,
+      "alpha": true,
+      "smooth": false
+    },
+    {
+      "file": "pokebar_slot_active.png",
+      "role": "expanded quick-bar slot",
+      "targetWidget": "HakaiQuickTeamSlot",
+      "state": "active",
+      "width": 300,
+      "height": 72,
+      "alpha": true,
+      "smooth": false
+    },
+    {
+      "file": "pokebar_slot_fainted.png",
+      "role": "expanded quick-bar slot",
+      "targetWidget": "HakaiQuickTeamSlot",
+      "state": "fainted",
+      "width": 300,
+      "height": 72,
+      "alpha": true,
+      "smooth": false
+    },
+    {
+      "file": "pokebar_compact_normal.png",
+      "role": "compact quick-bar slot",
+      "targetWidget": "HakaiQuickCompactSlot",
+      "state": "normal",
+      "width": 64,
+      "height": 64,
+      "alpha": true,
+      "smooth": false
+    },
+    {
+      "file": "pokebar_compact_hover.png",
+      "role": "compact quick-bar slot",
+      "targetWidget": "HakaiQuickCompactSlot",
+      "state": "hover",
+      "width": 64,
+      "height": 64,
+      "alpha": true,
+      "smooth": false
+    },
+    {
+      "file": "pokebar_compact_active.png",
+      "role": "compact quick-bar slot",
+      "targetWidget": "HakaiQuickCompactSlot",
+      "state": "active",
+      "width": 64,
+      "height": 64,
+      "alpha": true,
+      "smooth": false
+    },
+    {
+      "file": "pokebar_compact_fainted.png",
+      "role": "compact quick-bar slot",
+      "targetWidget": "HakaiQuickCompactSlot",
+      "state": "fainted",
+      "width": 64,
+      "height": 64,
+      "alpha": true,
+      "smooth": false
+    }
+  ],
+  "preservedWidgetIds": [
+    "teamWindow",
+    "activePokemonPanel",
+    "activePortrait",
+    "activeName",
+    "activeDescription",
+    "activeHealth",
+    "activeHealthText",
+    "openBagButton",
+    "teamLockButton",
+    "teamSlots"
+  ],
+  "newWidgetIds": [
+    "pokemonTopActionBar",
+    "pokemonRosterButton",
+    "teamCrest",
+    "teamCornerLeft",
+    "teamCornerRight",
+    "teamCloseButton",
+    "activeActionButton",
+    "syncStatus",
+    "pokemonQuickBar",
+    "quickBarHeader",
+    "quickBarTitle",
+    "quickBarManagerButton",
+    "quickBarModeButton",
+    "quickBarSlots"
+  ]
+}

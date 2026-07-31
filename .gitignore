@@ -1,0 +1,54 @@
+# Editor and operating-system state
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+.obsidian/workspace*.json
+
+# Builds, generated files, logs and local databases
+**/build/
+**/builds/
+**/cmake-build-*/
+**/CMakeCache.txt
+**/CMakeFiles/
+**/*.log
+**/*.pdb
+**/*.exe
+**/*.dll
+**/*.db
+**/*.sqlite
+**/.hakai-runtime/
+/server/tools/pokemon-data-cache/
+
+# Local configuration and credentials
+**/.env
+/server/config.lua
+/server/key.pem
+/server/tests/fixture/security/key.pem
+
+# Downloaded client packages
+/client/data/things/*/
+/client/data/sounds/*/
+*.spr
+
+# Content intentionally kept out of Loki
+/client/modules/game_wheel/
+/server/.github/
+/client/.github/
+/server/data/items/*-sync.json
+
+# Archives, backups and rejected patches
+*.zip
+*.rar
+*.7z
+*.bak
+*.bak-*
+*.bak_*
+*.old
+*.orig
+*.rej
+**/*backup*/
+**/*backups*/
+**/*_backup*/
+**/*_old.*
+**/*before-*

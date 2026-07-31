@@ -1,0 +1,13 @@
+Module
+  name: game_hakai_nurse_joy
+  description: Non-interactive Nurse Joy healing feedback
+  author: Hakai Engine
+  sandboxed: true
+  autoload: true
+  autoload-priority: 1200
+  scripts: [ nurse_joy_feedback ]
+  @onLoad: init()
+  @onUnload: terminate()
+  dependencies:
+    - game_interface
+
